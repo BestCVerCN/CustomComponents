@@ -12,7 +12,6 @@
 
 <script>
   import customcalendar from '../components/CustomCalendar'
-  import { toastMessage } from '../util'
 
   export default {
     name: 'Home',

@@ -197,6 +197,7 @@
             }
             this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
             console.log(this.dateData)
+            this.$emit('monthChanged',this.currentMonth)
             break
           case 'next':
             if (this.currentMonth === 12) {
