@@ -30,11 +30,14 @@
 
   export default {
     name: 'CustomCalendar',
+    props: {
+      currentDate: Date
+    },
     data () {
       return {
-        currentYear: 2020,
-        currentMonth: 7,
-        currentDay: 0,
+        currentYear: this.currentDate.getFullYear(),
+        currentMonth: this.currentDate.getMonth(),
+        currentDay: this.currentDate.getDay(),
         preMonth: preMonthIcon,
         nextMonth: nextMonthIcon,
         months: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], // 平年每个月的天数
@@ -45,7 +48,7 @@
       }
     },
     created () {
-      this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
+      this.dateData = this.getDateJson(this.currentDate)
     },
     methods: {
       getDateJson (date) {
@@ -148,7 +151,7 @@
             } else {
               this.currentMonth = this.currentMonth - 1
             }
-            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth-1, 1))
+            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
             console.log(this.dateData)
             break
           case 'next':
@@ -158,7 +161,7 @@
             } else {
               this.currentMonth = this.currentMonth + 1
             }
-            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth-1, 1))
+            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
             console.log(this.dateData)
             break
         }
