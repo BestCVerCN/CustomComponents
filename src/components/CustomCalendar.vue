@@ -17,7 +17,9 @@
     <div v-for="line in dateData">
       <div style="display: flex;justify-content: space-between;">
         <div v-for="cell in line">
-          <div :style="cell.place === 'cur' ? currentMonthDayStyle : nextOrPreMonthDayStyle">{{cell.day}}</div>
+          <div :style="cell.place === 'cur' ? currentMonthDayStyle : nextOrPreMonthDayStyle" @click="clickDate(cell)">
+            {{cell.day}}
+          </div>
         </div>
       </div>
     </div>
@@ -27,6 +29,7 @@
 <script>
   import preMonthIcon from '../assets/premonth.png'
   import nextMonthIcon from '../assets/nextmonth.png'
+  import { toastMessage } from '../util'
 
   export default {
     name: 'CustomCalendar',
@@ -36,7 +39,7 @@
     data () {
       return {
         currentYear: this.currentDate.getFullYear(),
-        currentMonth: this.currentDate.getMonth(),
+        currentMonth: this.currentDate.getMonth() + 1,
         currentDay: this.currentDate.getDay(),
         preMonth: preMonthIcon,
         nextMonth: nextMonthIcon,
@@ -136,9 +139,9 @@
       },
       clickDate (date) {
         if (date.place === 'cur') {
-          console.log(date.year + '年' + date.month + '月' + date.day + '日')
+          toastMessage(date.year + '年' + (date.month + 1) + '月' + date.day + '日')
         } else {
-          console.log('不是当前月的日期')
+          toastMessage('不是当前月的日期')
         }
 
       },
