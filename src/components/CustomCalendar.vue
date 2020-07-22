@@ -14,12 +14,29 @@
       <div class="week-line">五</div>
       <div class="week-line">六</div>
     </div>
+    <div style="height: 16px"></div>
     <div v-for="line in dateData">
       <div style="display: flex;justify-content: space-between;">
         <div v-for="cell in line">
-          <div :style="cell.place === 'cur' ? currentMonthDayStyle : nextOrPreMonthDayStyle" @click="clickDate(cell)">
-            {{cell.day}}
+          <div>
+            <div :style="cell.place === 'cur' ? currentMonthDayStyle : nextOrPreMonthDayStyle" @click="clickDate(cell)">
+              <div style="display: flex; align-items:center;justify-content: center">{{cell.day}}</div>
+              <div style="display: flex; align-items:center;justify-content: center;margin-top: 4px">
+                <div
+                  style="display:flex;width:24px; height:8px; font-size: 8px;justify-content: center;"
+                  v-show="cell.place ==='cur' && cell.message !== ''">{{cell.message}}
+                </div>
+              </div>
+              <div style="display: flex; align-items:center;justify-content: center;margin-top: 4px">
+                <div v-show="cell.place ==='cur' && cell.qualified !== ''"
+                     :style="cell.qualified === '合格' ? qualifiedStyle : unqualifiedStyle"
+                >{{cell.qualified}}
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </div>
     </div>
@@ -34,7 +51,11 @@
   export default {
     name: 'CustomCalendar',
     props: {
-      currentDate: Date
+      currentDate: Date,
+      qualifiedDate: [], // 合格日期
+      unqualifiedDate: [], // 不合格日期
+      qualifiedInfo: [], // 合格信息展示
+      unqualifiedInfo: [], // 不合格信息展示
     },
     data () {
       return {
@@ -46,8 +67,11 @@
         months: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], // 平年每个月的天数
         months2: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], // 闰年每个月的天数
         dateData: [],
-        currentMonthDayStyle: 'display: flex;height: 60px;width: 50px;font-size: 14px;align-items: center;justify-content: center',
-        nextOrPreMonthDayStyle: 'color: #e3e3e3;display: flex;height: 60px;width: 50px;font-size: 14px;align-items: center;justify-content: center',
+        currentMonthDayStyle: 'height: 60px;width: 50px;font-size: 16px;',
+        nextOrPreMonthDayStyle: 'color: #e3e3e3;height: 60px;width: 50px;font-size: 16px;',
+        qualifiedStyle: 'display:flex;width:24px; height:8px; font-size: 8px;justify-content: center;padding: 4px;background-color: #07c160;color: white',
+        unqualifiedStyle: 'display:flex;width:24px; height:8px; font-size: 8px;justify-content: center;padding: 4px;background-color: #cd5c5c;color: white',
+
       }
     },
     created () {
@@ -106,11 +130,28 @@
           dateJson.push(obj)
         }
         //循环添加当月日期
+        let m = 0 // 合格信息计数器
+        let n = 0 // 不合格信息计数器
         for (i = 1; i <= cur_num; i++) {
+          let tag = ''
+          let message = ''
+
+          if (this.qualifiedDate.indexOf(i) > -1) {
+            tag = '合格'
+            message = this.qualifiedInfo[m]
+            m++
+          } else if (this.unqualifiedDate.indexOf(i) > -1) {
+            tag = '不合格'
+            message = this.unqualifiedInfo[n]
+            n++
+          }
+
           obj = {
             year: yy,
             month: mm,
             day: i,
+            qualified: tag,
+            message: message,
             place: 'cur'
           }
           dateJson.push(obj)
@@ -166,6 +207,7 @@
             }
             this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
             console.log(this.dateData)
+            this.$emit('monthChanged',this.currentMonth)
             break
         }
       }
