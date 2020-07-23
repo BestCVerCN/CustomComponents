@@ -51,7 +51,6 @@
   export default {
     name: 'CustomCalendar',
     props: {
-      // currentDate: Date,
       year: 0,
       month: 0,
       day: 0,
@@ -193,25 +192,9 @@
       changeMonth (type) {
         switch (type) {
           case 'pre':
-            // if (this.currentMonth === 1) {
-            //   this.currentMonth = 12
-            //   this.currentYear = this.currentYear - 1
-            // } else {
-            //   this.currentMonth = this.currentMonth - 1
-            // }
-            // this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
-            // console.log(this.dateData)
             this.$emit('monthChanged', type, this.currentMonth - 1)
             break
           case 'next':
-            // if (this.currentMonth === 12) {
-            //   this.currentMonth = 1
-            //   this.currentYear = this.currentYear + 1
-            // } else {
-            //   this.currentMonth = this.currentMonth + 1
-            // }
-            // this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
-            // console.log(this.dateData)
             this.$emit('monthChanged', type, this.currentMonth + 1)
             break
         }

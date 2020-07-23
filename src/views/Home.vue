@@ -4,9 +4,7 @@
     <customcalendar :year="currentDate.year" :month="currentDate.month" :day="currentDate.day" :qualified-date="qualifiedDate"
                     :unqualified-date="unqualifiedDate" :qualified-info="qualifiedMessage"
                     :unqualified-info="unqualifiedMessage"
-                    @monthChanged="monthChange" :key="currentDate.month">
-
-    </customcalendar>
+                    @monthChanged="monthChange" :key="currentDate.month"/>
   </div>
 </template>
 
@@ -55,7 +53,6 @@
             }
             break;
         }
-        // this.currentDate.month = month
         toastMessage(month + 1)
       }
     }
