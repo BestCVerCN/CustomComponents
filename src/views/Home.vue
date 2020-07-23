@@ -53,6 +53,7 @@
             }
             break;
         }
+        this.qualifiedDate = [1,2,3]
         toastMessage(month + 1)
       }
     }
