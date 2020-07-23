@@ -5,17 +5,20 @@
                     :unqualified-date="unqualifiedDate" :qualified-info="qualifiedMessage"
                     :unqualified-info="unqualifiedMessage"
                     @monthChanged="monthChange" :key="currentDate.month"/>
+    <customtabel></customtabel>
   </div>
 </template>
 
 <script>
   import customcalendar from '../components/CustomCalendar'
+  import customtabel from '../components/CustomTable'
   import { toastMessage } from '../util'
 
   export default {
     name: 'Home',
     components: {
-      customcalendar
+      customcalendar,
+      customtabel
     },
     data () {
       return {
