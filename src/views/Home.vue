@@ -1,10 +1,10 @@
 <template>
   <div>
     <div style="display: flex;font-size: 16px;justify-content: center;height: 50px;align-items: center">自定义组件集合</div>
-    <customcalendar :current-date="new Date()" :qualified-date="qualifiedDate"
+    <customcalendar :year="currentDate.year" :month="currentDate.month" :day="currentDate.day" :qualified-date="qualifiedDate"
                     :unqualified-date="unqualifiedDate" :qualified-info="qualifiedMessage"
                     :unqualified-info="unqualifiedMessage"
-                    @monthChanged="monthChange" :key="month">
+                    @monthChanged="monthChange" :key="currentDate.month">
 
     </customcalendar>
   </div>
@@ -12,6 +12,7 @@
 
 <script>
   import customcalendar from '../components/CustomCalendar'
+  import { toastMessage } from '../util'
 
   export default {
     name: 'Home',
@@ -35,9 +36,27 @@
 
     },
     methods: {
-      monthChange(month){
-        this.month = month // 根据key刷新日历
-        this.qualifiedDate = [4,6,26]
+      monthChange(type, month){
+        switch (type) {
+          case 'pre':
+            if (this.currentDate.month === 0) {
+              this.currentDate.month = 11
+              this.currentDate.year = this.currentDate.year - 1
+            } else {
+              this.currentDate.month = month
+            }
+            break;
+          case 'next':
+            if (this.currentDate.month === 11) {
+              this.currentDate.month = 0
+              this.currentDate.year = this.currentDate.year + 1
+            } else {
+              this.currentDate.month = month
+            }
+            break;
+        }
+        // this.currentDate.month = month
+        toastMessage(month + 1)
       }
     }
   }

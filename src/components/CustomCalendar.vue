@@ -2,7 +2,7 @@
   <div>
     <div style="display: flex; justify-content: space-between; font-size: 20px;height: 60px;align-items: center">
       <img style="width: 20px;height: 20px;margin-left: 16px" :src="preMonth" alt="上一月" @click="changeMonth('pre')">
-      <div>{{currentYear}}年{{currentMonth}}月</div>
+      <div>{{currentYear}}年{{currentMonth + 1}}月</div>
       <img style="width: 20px;height: 20px;margin-right: 16px" :src="nextMonth" alt="下一月" @click="changeMonth('next')">
     </div>
     <div style="font-size: 14px;display: flex;justify-content: space-between; background-color: #07c160;">
@@ -51,17 +51,21 @@
   export default {
     name: 'CustomCalendar',
     props: {
-      currentDate: Date,
-      qualifiedDate: [], // 合格日期
-      unqualifiedDate: [], // 不合格日期
-      qualifiedInfo: [], // 合格信息展示
-      unqualifiedInfo: [], // 不合格信息展示
+      // currentDate: Date,
+      year: 0,
+      month: 0,
+      day: 0,
+      qualifiedDate: Array, // 合格日期
+      unqualifiedDate: Array, // 不合格日期
+      qualifiedInfo: Array, // 合格信息展示
+      unqualifiedInfo: Array, // 不合格信息展示
     },
+
     data () {
       return {
-        currentYear: this.currentDate.getFullYear(),
-        currentMonth: this.currentDate.getMonth() + 1,
-        currentDay: this.currentDate.getDay(),
+        currentYear: this.year,
+        currentMonth: this.month,
+        currentDay: this.day,
         preMonth: preMonthIcon,
         nextMonth: nextMonthIcon,
         months: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], // 平年每个月的天数
@@ -75,7 +79,7 @@
       }
     },
     created () {
-      this.dateData = this.getDateJson(this.currentDate)
+      this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth, this.currentDay))
     },
     methods: {
       getDateJson (date) {
@@ -189,26 +193,26 @@
       changeMonth (type) {
         switch (type) {
           case 'pre':
-            if (this.currentMonth === 1) {
-              this.currentMonth = 12
-              this.currentYear = this.currentYear - 1
-            } else {
-              this.currentMonth = this.currentMonth - 1
-            }
-            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
-            console.log(this.dateData)
-            this.$emit('monthChanged',this.currentMonth)
+            // if (this.currentMonth === 1) {
+            //   this.currentMonth = 12
+            //   this.currentYear = this.currentYear - 1
+            // } else {
+            //   this.currentMonth = this.currentMonth - 1
+            // }
+            // this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
+            // console.log(this.dateData)
+            this.$emit('monthChanged', type, this.currentMonth - 1)
             break
           case 'next':
-            if (this.currentMonth === 12) {
-              this.currentMonth = 1
-              this.currentYear = this.currentYear + 1
-            } else {
-              this.currentMonth = this.currentMonth + 1
-            }
-            this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
-            console.log(this.dateData)
-            this.$emit('monthChanged',this.currentMonth)
+            // if (this.currentMonth === 12) {
+            //   this.currentMonth = 1
+            //   this.currentYear = this.currentYear + 1
+            // } else {
+            //   this.currentMonth = this.currentMonth + 1
+            // }
+            // this.dateData = this.getDateJson(new Date(this.currentYear, this.currentMonth - 1, 1))
+            // console.log(this.dateData)
+            this.$emit('monthChanged', type, this.currentMonth + 1)
             break
         }
       }
