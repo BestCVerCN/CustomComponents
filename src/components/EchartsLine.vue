@@ -1,12 +1,20 @@
 <template>
   <div>
     <div ref="chartLine" class="line-wrap"></div>
+    <div style="display: flex; justify-content: space-between; font-size: 20px;height: 60px;align-items: center">
+      <img style="width: 20px;height: 20px;margin-left: 16px" :src="preMonth" alt="上一月" @click="changeMonth('pre')">
+      <div>{{currentYear}}年{{currentMonth}}月</div>
+      <img style="width: 20px;height: 20px;margin-right: 16px" :src="nextMonth" alt="下一月" @click="changeMonth('next')">
+    </div>
     <div ref="chartLine2" class="line-wrap"></div>
   </div>
 </template>
 
 <script>
   import * as echarts from 'echarts'
+  import preMonthIcon from '../assets/premonth.png'
+  import nextMonthIcon from '../assets/nextmonth.png'
+  import { toastMessage } from '../util'
 
   require('echarts/theme/shine')
   export default {
@@ -14,13 +22,26 @@
     data () {
       return {
         chartLine: null,
-        chartLine2: null
+        chartLine2: null,
+        preMonth: preMonthIcon,
+        nextMonth: nextMonthIcon,
+        months: [1, 2, 3, 4, 5, 6],
+        peopleNum: [70, 61, 790, 1067, 942, 96],
+        money: [75.1, 36.1, 318.56, 337.16, 366.89, 104.75],
+        currentYear: 2020,
+        currentMonth: 6,
+        currentIndex: 0
       }
     },
     mounted () {
       this.$nextTick(() => {
         this.drawLineChart()
         this.drawLineChart2()
+        this.chartLine2.dispatchAction({
+          type: 'highlight',
+          dataIndex: this.months.length - 1
+        })
+        this.currentIndex = this.months.length - 1
       })
     },
     methods: {
@@ -97,10 +118,6 @@
           title: {
             text: '发薪统计'
           },
-          tooltip: {
-            // 点击展示详细信息
-            trigger: 'axis'
-          },
           legend: {
             x: 'right',
             data: ['人数(人)', '发薪(万)']
@@ -113,7 +130,7 @@
               axisTick: {
                 show: false
               },
-              data: ['1月', '2月', '3月', '4月', '5月', '6月']
+              data: this.months
             }
           ],
           yAxis: [
@@ -136,7 +153,7 @@
               type: 'line',
               symbol: 'circle',
               symbolSize: 6,
-              data: [70, 61, 790, 1067, 942, 96],
+              data: this.peopleNum,
               label: {
                 show: true
               },
@@ -148,19 +165,60 @@
               name: '发薪(万)',
               type: 'line',
               symbol: 'circle',
-              yAxisIndex:1,
-              data: [75.1, 36.1, 318.56, 337.16, 366.89, 104.75],
+              yAxisIndex: 1,
+              data: this.money,
               label: {
                 show: true
               },
               itemStyle: {
-                color: '#104E8B'
+                color: '#458B74'
               }
             }
           ]
         }
         // 使用刚指定的配置项和数据显示图表
         this.chartLine2.setOption(option)
+      },
+      changeMonth (type) {
+        this.chartLine2.dispatchAction({
+          type: 'downplay',
+          dataIndex: this.currentIndex
+        })
+        switch (type) {
+          case 'pre':
+
+            if (this.currentMonth - 1 >= this.months[0]) {
+              this.chartLine2.dispatchAction({
+                type: 'highlight',
+                dataIndex: this.currentIndex - 1
+              })
+              this.currentIndex--
+              this.currentMonth--
+            } else {
+              this.chartLine2.dispatchAction({
+                type: 'highlight',
+                dataIndex: this.currentIndex
+              })
+            }
+            break
+          case 'next':
+
+            if (this.currentMonth + 1 <= this.months[this.months.length - 1]) {
+              this.chartLine2.dispatchAction({
+                type: 'highlight',
+                dataIndex: this.currentIndex + 1
+              })
+              this.currentIndex++
+              this.currentMonth++
+            } else {
+              this.chartLine2.dispatchAction({
+                type: 'highlight',
+                dataIndex: this.currentIndex
+              })
+            }
+
+            break
+        }
       }
     }
   }
