@@ -1,12 +1,13 @@
 <template>
   <div>
+    <div style="width: 100%; height: 600px; background-color: #cacaca"></div>
     <PanelView :un-selected-menus="unSelectedMenus" :menus="menus" @onMenuClicked="onClickMenuCallBack"/>
   </div>
 </template>
 
 <script>
   import { toastMessage } from '../util'
-  import PanelView from '../components/PanelView'
+  import PanelView from '../components/panel/PanelView'
 
   export default {
     name: 'PanelPage',

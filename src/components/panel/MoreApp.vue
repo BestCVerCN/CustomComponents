@@ -52,10 +52,10 @@
 </template>
 
 <script>
-  import deleteImg from '../../src/assets/menu_item_disabled.png';
-  import addImg from '../../src/assets/menu_item_add.png';
+  import deleteImg from '../../assets/menu_item_disabled.png';
+  import addImg from '../../assets/menu_item_add.png';
   import Notify from "vant/es/notify";
-  import closeIcon from '../../src/assets/arrow_back_b.png';
+  import closeIcon from '../../assets/arrow_back_b.png';
   import draggable from 'vuedraggable';
 
   export default {

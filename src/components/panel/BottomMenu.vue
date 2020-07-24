@@ -22,10 +22,10 @@
 </template>
 
 <script>
-  import MenuClose from '../../src/assets/pulldown.png';
-  import MenuExpand from '../../src/assets/pullup.png';
-  import Location from '../../src/assets/location.png';
-  import vueTouch from "../../src/vueTouch";
+  import MenuClose from '../../assets/pulldown.png';
+  import MenuExpand from '../../assets/pullup.png';
+  import Location from '../../assets/location.png';
+  import vueTouch from "../../vueTouch";
 
   export default {
     name: "BottomMenu",
