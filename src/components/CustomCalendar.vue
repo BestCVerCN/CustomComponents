@@ -178,9 +178,11 @@
         console.log(formatDateJson)
         return formatDateJson
       },
+      //判断是否是闰年
       isLeapYear (yy) {
         return yy % 100 === 0 && yy % 400 === 0 ? true : (yy % 4 === 0)
       },
+      // 点击日期
       clickDate (date) {
         if (date.place === 'cur') {
           toastMessage(date.year + '年' + (date.month + 1) + '月' + date.day + '日')
@@ -189,6 +191,7 @@
         }
 
       },
+      // 月份改变
       changeMonth (type) {
         switch (type) {
           case 'pre':

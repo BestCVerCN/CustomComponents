@@ -57,7 +57,7 @@
             break;
         }
         this.qualifiedDate = [1,2,3]
-        toastMessage(month + 1)
+        toastMessage(this.currentDate.month + 1)
       }
     }
   }
