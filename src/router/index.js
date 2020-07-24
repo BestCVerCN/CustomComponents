@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import EchartsLine from '../components/EchartsLine'
 import CalendarPage from '../views/CalendarPage'
 import TablePage from '../views/TablePage'
+import PanelPage from '../views/PanelPage'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/table',
     name: 'TablePage',
     component: TablePage
+  },
+  {
+    path: '/panel',
+    name: 'PanelPage',
+    component: PanelPage
   }
 ]
 

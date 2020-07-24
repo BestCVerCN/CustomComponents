@@ -13,12 +13,18 @@ import {
   Button,
   Field,
   Form,
+  Grid,
+  Popup,
+  GridItem,
   Notify
 } from 'vant';
 
 Vue.use(Button);
 Vue.use(Field);
 Vue.use(Form);
+Vue.use(Grid);
+Vue.use(GridItem);
+Vue.use(Popup);
 Vue.use(Notify);
 
 Vue.config.productionTip = false

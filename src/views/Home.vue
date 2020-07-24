@@ -4,6 +4,7 @@
     <van-button round type="primary" size="normal" url="/#/calendar">日历</van-button>
     <van-button round type="primary" size="normal" url="/#/table">表格</van-button>
     <van-button round type="primary" size="normal" url="/#/line">折线图</van-button>
+    <van-button round type="primary" size="normal" url="/#/panel">底部应用面板</van-button>
   </div>
 </template>
 
