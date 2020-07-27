@@ -21,7 +21,7 @@
         currentDate: {
           year: new Date().getFullYear(),
           month: new Date().getMonth(),
-          day: new Date().getDay()
+          day: new Date().getDate()
         },
         qualifiedDate: [5, 8, 27],
         unqualifiedDate: [9, 15, 23],

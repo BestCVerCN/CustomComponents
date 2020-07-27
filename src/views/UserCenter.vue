@@ -1,5 +1,5 @@
 <template>
-  <div>个人中心</div>
+  <div style="font-size: 12px">个人中心</div>
 </template>
 
 <script>

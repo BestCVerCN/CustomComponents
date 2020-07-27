@@ -7,6 +7,7 @@ import TablePage from '../views/TablePage'
 import PanelPage from '../views/PanelPage'
 import UserCenter from '../views/UserCenter'
 import Navigation from '../views/Navigation'
+import Demo from '../views/Demo'
 
 Vue.use(VueRouter)
 
@@ -56,6 +57,11 @@ const routes = [
         component: UserCenter
       },
     ]
+  },
+  {
+    path:'/demo',
+    name:'Demo',
+    component: Demo
   }
 ]
 
