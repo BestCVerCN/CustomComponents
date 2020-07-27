@@ -1,4 +1,7 @@
 # CustomComponents
+### 底部导航栏Tabbar
+使用vant框架中的tabbar，使用了路由模式，因为希望tab切换时去到的页面能在navigation页面里，所以用到了嵌套路由，在Navigation节点当中使用了children配置。  
+关于嵌套路由，详见https://router.vuejs.org/zh/guide/essentials/nested-routes.html
 ### 自定义日历(考勤显示)
 日历传入年，月，日。  
 可以显示两种类型的日期事件，合格和不合格  
