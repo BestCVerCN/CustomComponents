@@ -16,6 +16,8 @@ import {
   Grid,
   Popup,
   GridItem,
+  Tabbar,
+  TabbarItem,
   Notify
 } from 'vant';
 
@@ -25,6 +27,8 @@ Vue.use(Form);
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Popup);
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
 Vue.use(Notify);
 
 Vue.config.productionTip = false

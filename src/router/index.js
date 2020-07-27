@@ -5,15 +5,17 @@ import EchartsLine from '../components/EchartsLine'
 import CalendarPage from '../views/CalendarPage'
 import TablePage from '../views/TablePage'
 import PanelPage from '../views/PanelPage'
+import UserCenter from '../views/UserCenter'
+import Navigation from '../views/Navigation'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: Home
+  // },
   {
     path: '/line',
     name: 'EchartsLine',
@@ -33,6 +35,27 @@ const routes = [
     path: '/panel',
     name: 'PanelPage',
     component: PanelPage
+  },
+  // {
+  //   path: '/usercenter',
+  //   name: 'UserCenter',
+  //   component: UserCenter
+  // },
+  {
+    path: '/',
+    name: 'Navigation',
+    component: Navigation,
+    children:[
+      {
+        path: '/home',
+        name: 'Home',
+        component: Home
+      },{
+        path: '/usercenter',
+        name: 'UserCenter',
+        component: UserCenter
+      },
+    ]
   }
 ]
 
