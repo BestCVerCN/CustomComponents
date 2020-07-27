@@ -1,20 +1,20 @@
 <template>
   <div>
-    <customcalendar :year="currentDate.year" :month="currentDate.month" :day="currentDate.day" :qualified-date="qualifiedDate"
+    <custom-calendar :year="currentDate.year" :month="currentDate.month" :day="currentDate.day" :qualified-date="qualifiedDate"
                     :unqualified-date="unqualifiedDate" :qualified-info="qualifiedMessage"
                     :unqualified-info="unqualifiedMessage"
-                    @monthChanged="monthChange" :key="currentDate.month"></customcalendar>
+                    @monthChanged="monthChange" :key="currentDate.month"></custom-calendar>
 
   </div>
 </template>
 
 <script>
-  import customcalendar from '../components/CustomCalendar'
+  import CustomCalendar from '../components/CustomCalendar'
   import { toastMessage } from '../util'
   export default {
     name: 'CalendarPage',
     components: {
-      customcalendar
+      CustomCalendar
     },
     data(){
       return {

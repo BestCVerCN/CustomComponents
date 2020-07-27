@@ -1,15 +1,15 @@
 <template>
   <div>
-    <customtabel :column-data="columnData" :row-data="rowData"></customtabel>
+    <custom-table :column-data="columnData" :row-data="rowData"></custom-table>
   </div>
 </template>
 
 <script>
-  import customtabel from '../components/CustomTable'
+  import CustomTable from '../components/CustomTable'
   export default {
     name: 'TablePage',
     components: {
-      customtabel
+      CustomTable
     },
     data(){
       return {

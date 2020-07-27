@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BottomMenu :menus="menusSave" @onClickMenu="onClickMenuCallBack"/>
+    <bottom-menu :menus="menusSave" @onClickMenu="onClickMenuCallBack"/>
     <van-popup v-model="showMoreApp" round position="bottom" :style="{ height: '70%' }" @closed="onMoreAppClose">
-      <MoreApp :selected-menus="menusSave" :un-selected-menus="unSelectedMenusSave" @closePopUp="closePopUpCallBack"
+      <more-app :selected-menus="menusSave" :un-selected-menus="unSelectedMenusSave" @closePopUp="closePopUpCallBack"
                @finishEdit="finishEditCallBack"/>
     </van-popup>
   </div>
