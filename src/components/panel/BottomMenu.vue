@@ -21,6 +21,7 @@
   import MenuClose from '../../assets/pulldown.png'
   import MenuExpand from '../../assets/pullup.png'
   import Location from '../../assets/location.png'
+  import vueTouch from "../../vueTouch";
 
   export default {
     name: 'BottomMenu',
