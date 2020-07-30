@@ -5,11 +5,9 @@
     </div>
     <div v-for="(item,index) in rowData" :style="index%2===1?drawLineStyle:normalLineStyle"
          :key="item.name">
-      <div class="table-head-item">{{item.name}}</div>
-      <div class="table-head-item">{{item.rank}}</div>
-      <div class="table-head-item">{{item.checkNums}}</div>
-      <div class="table-head-item">{{item.qualifiedNums}}</div>
-      <div class="table-head-item">{{item.percent}}</div>
+      <div v-for="key in Object.keys(item)">
+        <div class="table-head-item">{{item[key]}}</div>
+      </div>
     </div>
   </div>
 </template>
